@@ -2,7 +2,9 @@ import { Tooltip } from 'react-tooltip'
 import { FaUser, FaLink, FaBrain, FaBriefcase, FaGraduationCap, FaAward, FaEye, FaTrash, FaFileDownload } from "react-icons/fa";
 import "../styles/sidebar.css"
 
-export default function Sidebar({ onclick }) {
+// TODO: Set views / actions for live view, download, clear CV
+
+export default function Sidebar({ activeView, onclick }) {
     return (
         <div className="sidebar">
             <div className="sidebar-block">
@@ -11,6 +13,7 @@ export default function Sidebar({ onclick }) {
                     data-tooltip-content="Personal Information"
                     data-tooltip-place="right"
                     onClick={() => onclick("personal")}
+                    className={activeView === "personal" ? "active" : ""}
                 >
                     <FaUser className="iconStyle"/>
                 </button>
@@ -20,6 +23,7 @@ export default function Sidebar({ onclick }) {
                     data-tooltip-content="Links"
                     data-tooltip-place="right"
                     onClick={() => onclick("links")}
+                    className={activeView === "links" ? "active" : ""}
                 >
                     <FaLink className="iconStyle"/>
                 </button>
@@ -29,6 +33,7 @@ export default function Sidebar({ onclick }) {
                     data-tooltip-content="Skills"
                     data-tooltip-place="right"
                     onClick={() => onclick("skills")}
+                    className={activeView === "skills" ? "active" : ""}
                 >
                     <FaBrain className="iconStyle"/>
                 </button>
@@ -38,6 +43,7 @@ export default function Sidebar({ onclick }) {
                     data-tooltip-content="Work Experience"
                     data-tooltip-place="right"
                     onClick={() => onclick("work")}
+                    className={activeView === "work" ? "active" : ""}
                 >
                     <FaBriefcase className="iconStyle"/>
                 </button>
@@ -47,6 +53,7 @@ export default function Sidebar({ onclick }) {
                     data-tooltip-content="Education"
                     data-tooltip-place="right"
                     onClick={() => onclick("education")}
+                    className={activeView === "education" ? "active" : ""}
                 >
                     <FaGraduationCap className="iconStyle"/>
                 </button>
@@ -56,6 +63,7 @@ export default function Sidebar({ onclick }) {
                     data-tooltip-content="Certificates & Interest"
                     data-tooltip-place="right"
                     onClick={() => onclick("certificates")}
+                    className={activeView === "certificates" ? "active" : ""}
                 >
                     <FaAward className="iconStyle"/>
                 </button>
@@ -67,6 +75,7 @@ export default function Sidebar({ onclick }) {
                     data-tooltip-id="preview"
                     data-tooltip-content="Live Preview"
                     data-tooltip-place="right"
+                    className={activeView === "preview" ? "active" : ""}
                 >
                     <FaEye className="iconStyle"/>
                 </button>
@@ -75,6 +84,7 @@ export default function Sidebar({ onclick }) {
                     data-tooltip-id="download"
                     data-tooltip-content="Download as PDF"
                     data-tooltip-place="right"
+                    className={activeView === "download" ? "active" : ""}
                 >
                     <FaFileDownload className="iconStyle"/>
                 </button>
@@ -86,12 +96,12 @@ export default function Sidebar({ onclick }) {
                     data-tooltip-id="reset"
                     data-tooltip-content="Reset CV"
                     data-tooltip-place="right"
+                    className={activeView === "reset" ? "active" : ""}
                 >
                     <FaTrash className="iconStyle"/>
                 </button>
                 <Tooltip id="reset" className="tooltip"/>
             </div>
-            
         </div>
     )
 }

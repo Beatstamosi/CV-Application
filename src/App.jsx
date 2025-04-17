@@ -14,7 +14,7 @@ function App() {
   return (
     <div className='app-layout'>
       <div className='container-sidebar'>
-        <Sidebar onclick={setActiveView} />
+        <Sidebar onclick={setActiveView} activeView={activeView} />
       </div>
       <div className='main-content'>
         {activeView === "personal" && <Personal />}

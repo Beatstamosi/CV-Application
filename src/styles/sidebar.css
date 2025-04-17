@@ -30,7 +30,7 @@ button:hover .iconStyle {
     fill: var(--color-accent-2);
 }
 
-button:focus {
+button:focus, .active {
     background-color: var(--color-accent-2);
 }
 
