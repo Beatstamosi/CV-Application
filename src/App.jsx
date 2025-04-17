@@ -2,6 +2,7 @@ import Sidebar from './components/sidebar'
 import Personal from './components/personal'
 import Links from './components/links'
 import Skills from './components/skills'
+import WorkExperience from './components/work'
 import "./styles/App.css"
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
         <Sidebar />
       </div>
       <div className='main-content'>
-        <Skills />
+        <WorkExperience />
       </div>
     </div>
   )
