@@ -1,0 +1,32 @@
+.container-certificates {
+    background-color: var(--color-primary);
+    padding: 40px;
+    border-radius: 5px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 800px;
+    max-width: 800px;
+}
+
+.certificates-label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-weight: bold;
+    color: var(--color-accent-1);
+    position: relative;
+    flex: 1;
+}
+
+.certificates-input {
+    font-size: 1em;
+    padding: 10px 5px;
+    border-radius: 5px;
+    height: 150px;
+}
+
+.certificates-input:focus {
+    box-shadow: 0 0 0 2px var(--color-accent-2);
+}
