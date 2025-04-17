@@ -3,6 +3,7 @@ import Personal from './components/personal'
 import Links from './components/links'
 import Skills from './components/skills'
 import WorkExperience from './components/work'
+import Education from './components/education'
 import "./styles/App.css"
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
         <Sidebar />
       </div>
       <div className='main-content'>
-        <WorkExperience />
+        <Education />
       </div>
     </div>
   )
