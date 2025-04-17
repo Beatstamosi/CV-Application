@@ -2,7 +2,7 @@ import { Tooltip } from 'react-tooltip'
 import { FaUser, FaLink, FaBrain, FaBriefcase, FaGraduationCap, FaAward, FaEye, FaTrash, FaFileDownload } from "react-icons/fa";
 import "../styles/sidebar.css"
 
-export default function Sidebar() {
+export default function Sidebar({ onclick }) {
     return (
         <div className="sidebar">
             <div className="sidebar-block">
@@ -10,6 +10,7 @@ export default function Sidebar() {
                     data-tooltip-id="personal"
                     data-tooltip-content="Personal Information"
                     data-tooltip-place="right"
+                    onClick={() => onclick("personal")}
                 >
                     <FaUser className="iconStyle"/>
                 </button>
@@ -18,6 +19,7 @@ export default function Sidebar() {
                     data-tooltip-id="links"
                     data-tooltip-content="Links"
                     data-tooltip-place="right"
+                    onClick={() => onclick("links")}
                 >
                     <FaLink className="iconStyle"/>
                 </button>
@@ -26,6 +28,7 @@ export default function Sidebar() {
                     data-tooltip-id="skills"
                     data-tooltip-content="Skills"
                     data-tooltip-place="right"
+                    onClick={() => onclick("skills")}
                 >
                     <FaBrain className="iconStyle"/>
                 </button>
@@ -34,6 +37,7 @@ export default function Sidebar() {
                     data-tooltip-id="work"
                     data-tooltip-content="Work Experience"
                     data-tooltip-place="right"
+                    onClick={() => onclick("work")}
                 >
                     <FaBriefcase className="iconStyle"/>
                 </button>
@@ -42,6 +46,7 @@ export default function Sidebar() {
                     data-tooltip-id="education"
                     data-tooltip-content="Education"
                     data-tooltip-place="right"
+                    onClick={() => onclick("education")}
                 >
                     <FaGraduationCap className="iconStyle"/>
                 </button>
@@ -50,6 +55,7 @@ export default function Sidebar() {
                     data-tooltip-id="certificates"
                     data-tooltip-content="Certificates & Interest"
                     data-tooltip-place="right"
+                    onClick={() => onclick("certificates")}
                 >
                     <FaAward className="iconStyle"/>
                 </button>

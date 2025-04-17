@@ -6,13 +6,14 @@
     display: flex;
     flex-direction: column;
     gap: 50px;
-    min-width: 800px;
+    min-width: 600px;
     max-width: 800px;
 }
 
 .container-experience {
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 
 .container-input-fields {
@@ -21,10 +22,6 @@
     margin-bottom: 20px;
     justify-content: space-between;
     align-items: flex-end;
-}
-
-h2 {
-    margin-bottom: 20px;
 }
 
 .job-label {
