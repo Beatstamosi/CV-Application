@@ -1,0 +1,49 @@
+.sidebar {
+    background-color: var(--color-primary);
+    width: 100px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 100px;
+}
+
+.sidebar-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+button {
+    background-color: var(--color-primary);
+    padding: 5px;
+    transition: background-color .3s ease-in;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: var(--color-text-secondary);
+}
+
+button:hover .iconStyle {
+    fill: var(--color-accent-2);
+}
+
+button:focus {
+    background-color: var(--color-accent-2);
+}
+
+button:focus .iconStyle {
+    fill: white;
+}
+
+.iconStyle {
+    fill: white;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 2.5em;
+}
+
+.sidebar-block .tooltip {
+    background-color: var(--color-primary);
+}
