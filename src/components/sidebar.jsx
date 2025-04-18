@@ -75,6 +75,7 @@ export default function Sidebar({ activeView, onclick }) {
                     data-tooltip-id="preview"
                     data-tooltip-content="Live Preview"
                     data-tooltip-place="right"
+                    onClick={() => onclick("preview")}
                     className={activeView === "preview" ? "active" : ""}
                 >
                     <FaEye className="iconStyle"/>
