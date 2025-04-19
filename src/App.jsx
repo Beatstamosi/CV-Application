@@ -10,8 +10,10 @@ import Preview from './components/preview'
 import "./styles/App.css"
 
 function App() {
+  // === Active View logic ===
   const [activeView, setActiveView] = useState("personal");
 
+  // === Personal Details logic ===
   const [personalDetails, setPersonalDetails] = useState({
     fullName: "",
     jobTitle: "",
@@ -21,6 +23,7 @@ function App() {
     about: ""
   });
 
+  // === Links logic ===
   const [links, setLinks] = useState({
     website: "",
     linkedin: "",
@@ -215,6 +218,9 @@ function App() {
     setEducation(updatedEducation);
   };
 
+  // === Certificates, Interests logic ===
+  const [certificates, setCertificates] = useState("");
+  const [interests, setInterests] = useState("");
 
   return (
     <div className='app-layout'>
@@ -252,7 +258,14 @@ function App() {
             removeBullet={handleRemoveEducationBullet}
           />
         )}
-        {activeView === "certificates" && <Certificates />}
+        {activeView === "certificates" && (
+          <Certificates 
+            certificates={certificates}
+            setCertificates={setCertificates}
+            interests={interests}
+            setInterests={setInterests}
+          />
+        )}
         {activeView === "preview" && (
           <Preview
             personalDetails={personalDetails}
@@ -260,6 +273,8 @@ function App() {
             skills={skills}
             experience={experience}
             education={education}
+            certificates={certificates}
+            interests={interests}
           />
         )}
       </div>

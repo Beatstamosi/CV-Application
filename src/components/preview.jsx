@@ -1,6 +1,6 @@
 import "../styles/preview.css"
 
-export default function Preview({ personalDetails, links, skills, experience, education }) {
+export default function Preview({ personalDetails, links, skills, experience, education, certificates, interests }) {
     return (
         <div className="container-preview">
             <div>
@@ -52,7 +52,12 @@ export default function Preview({ personalDetails, links, skills, experience, ed
                     </div>
                 ))}
             </div>
+            <div>
+                <p>Certificates: {certificates}</p>
+            </div>
+            <div>
+                <p>Interests: {interests}</p>
+            </div>
         </div>
-        
     );
 }
