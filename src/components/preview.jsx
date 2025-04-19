@@ -1,9 +1,12 @@
 import "../styles/preview.css";
 import { FaGlobe, FaLinkedin, FaGithub } from "react-icons/fa";
 
-export default function Preview({ personalDetails, links, skills, experience, education, certificates, interests }) {
+export default function Preview({ personalDetails, links, skills, experience, education, certificates, interests, previewRef}) {
     return (
-        <div className="preview-container">
+        <div
+            className="preview-container"
+            ref={previewRef}
+        >
             {/* === Header === */}
             <header className="preview-header">
                 <h1>{personalDetails.fullName || "Your Name"}</h1>

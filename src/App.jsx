@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import html2pdf from "html2pdf.js";
 import Sidebar from './components/sidebar'
 import Personal from './components/personal'
 import Links from './components/links'
@@ -222,10 +223,73 @@ function App() {
   const [certificates, setCertificates] = useState("");
   const [interests, setInterests] = useState("");
 
+ // === Handle pdf logic ===
+  const previewRef = useRef();
+
+  const handleDownloadPDF = () => {
+    const element = previewRef.current;
+
+    const options = {
+      margin: 0.5,
+      filename: `${personalDetails.fullName}_CV.pdf`,
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
+    };
+
+    html2pdf().from(element).set(options).save();
+  };
+
+   // === Handle clear CV logic ===
+  const clearCV = () => {
+    let text = "Are you sure you want to reset your CV?";
+    if (confirm(text) === true) {
+      setPersonalDetails({
+        fullName: "",
+        jobTitle: "",
+        email: "",
+        phone: "",
+        address: "",
+        about: ""
+      });
+      setLinks({
+        website: "",
+        linkedin: "",
+        github: "",
+      });
+      setSkills({
+        languages: [""],
+        tools: [""],
+        other: [""]
+      });
+      setExperience([
+        {
+          company: "",
+          title: "",
+          duration: "",
+          address: "",
+          bullets: [""]
+        }
+      ]);
+      setEducation([
+        {
+          university: "",
+          degree: "",
+          graduation: "",
+          address: "",
+          bullets: [""]
+        }
+      ]);
+      setCertificates("");
+      setInterests("");
+      setActiveView("personal");
+    }
+  }
+
   return (
     <div className='app-layout'>
       <div className='container-sidebar'>
-        <Sidebar onclick={setActiveView} activeView={activeView} />
+        <Sidebar onclick={setActiveView} activeView={activeView} downloadPdf={handleDownloadPDF} clearCV={clearCV} />
       </div>
       <div className='main-content'>
         {activeView === "personal" && <Personal personalDetails={personalDetails} onChange={setPersonalDetails}/>}
@@ -275,6 +339,8 @@ function App() {
             education={education}
             certificates={certificates}
             interests={interests}
+            previewRef={previewRef}
+            isVisible={activeView === "preview"}
           />
         )}
       </div>

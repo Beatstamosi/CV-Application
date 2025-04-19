@@ -2,9 +2,7 @@ import { Tooltip } from 'react-tooltip'
 import { FaUser, FaLink, FaBrain, FaBriefcase, FaGraduationCap, FaAward, FaEye, FaTrash, FaFileDownload } from "react-icons/fa";
 import "../styles/sidebar.css"
 
-// TODO: Set views / actions for live view, download, clear CV
-
-export default function Sidebar({ activeView, onclick }) {
+export default function Sidebar({ activeView, onclick, downloadPdf, clearCV }) {
     return (
         <div className="sidebar">
             <div className="sidebar-block">
@@ -85,7 +83,13 @@ export default function Sidebar({ activeView, onclick }) {
                     data-tooltip-id="download"
                     data-tooltip-content="Download as PDF"
                     data-tooltip-place="right"
-                    className={activeView === "download" ? "active" : ""}
+                    onClick={(e) => {
+                        onclick("preview");
+                        setTimeout(() => {
+                            downloadPdf();
+                        }, 300) // set timeout to wait for preview to load so that previewRef is accessible
+                        e.currentTarget.blur();
+                    }}
                 >
                     <FaFileDownload className="iconStyle"/>
                 </button>
@@ -97,7 +101,10 @@ export default function Sidebar({ activeView, onclick }) {
                     data-tooltip-id="reset"
                     data-tooltip-content="Reset CV"
                     data-tooltip-place="right"
-                    className={activeView === "reset" ? "active" : ""}
+                    onClick={(e) => {
+                        clearCV();
+                        e.currentTarget.blur();
+                     }}
                 >
                     <FaTrash className="iconStyle"/>
                 </button>
