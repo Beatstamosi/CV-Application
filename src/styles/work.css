@@ -81,3 +81,9 @@ hr {
     border: 1px solid var(--color-accent-2);
     margin-top: 20px;
 }
+
+.recent {
+    font-size: 0.65em;
+    font-weight: 200;
+    margin-left: 30px;
+}
