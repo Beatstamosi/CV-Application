@@ -1,50 +1,55 @@
 import "../styles/skills.css"
 
-export default function Skills() {
+export default function Skills({ skills, onChange, addSkill, removeSkill }) {
     return (
         <div className="container-form">
             <div className="container-skillset languages">
                 <h3>Languages</h3>
                 <hr />
-                {/* TODO: Render Input via states.map */}
-                <SkillInput />
-                <ButtonAddSkill />
+                {skills.languages.map((language, index) => <SkillInput key={index} value={language} skill={"languages"} index={index} onChange={onChange} removeSkill={removeSkill}/>)}
+                <ButtonAddSkill addSkill={addSkill} skill={"languages"} />
             </div>
 
             <div className="container-skillset tools">
                 <h3>Tools & Technologies</h3>
                 <hr />
-                {/* TODO: Render Input via states.map */}
-                <SkillInput />
-                <ButtonAddSkill />
+                {skills.tools.map((tool, index) => <SkillInput key={index} value={tool} skill={"tools"} index={index} onChange={onChange} removeSkill={removeSkill}/>)}
+                <ButtonAddSkill addSkill={addSkill} skill={"tools"} />
             </div>
 
             <div className="container-skillset other">
                 <h3>Other Relevant Skills</h3>
                 <hr />
-                {/* TODO: Render Input via states.map */}
-                <SkillInput />
-                <ButtonAddSkill />
+                {skills.other.map((other, index) => <SkillInput key={index} value={other} skill={"other"} index={index} onChange={onChange} removeSkill={removeSkill}/>)}
+                <ButtonAddSkill addSkill={addSkill} skill={"other"} />
             </div>
         </div>
     )
 }
 
-// TODO: Add Functionality
-function SkillInput() {
+function SkillInput({ value, skill, index, onChange, removeSkill }) {
     return (
         <div className="container-skill-input">
-            <input type="text" placeholder="Enter Skill" className="enter-skill-input"/>
-            <button className="remove-skill-btn">Remove</button>
+            <input
+                type="text"
+                placeholder="Enter Skill"
+                className="enter-skill-input"
+                value={value}
+                onChange={(e) => onChange(skill, index, e.target.value)}
+            />
+            <button
+                className="remove-skill-btn"
+                onClick={() => removeSkill(skill, index)}
+            >Remove</button>
         </div>
     )
 }
 
-// TODO: Add Functionality
-function ButtonAddSkill() {
+function ButtonAddSkill({ addSkill, skill }) {
     return (
-        <>
-        <button className="btn-add-skill">Add another Skill</button>
-        </>
+        <button
+            className="btn-add-skill"
+            onClick={() => addSkill(skill)}
+        >Add another Skill</button>
     )
 }
