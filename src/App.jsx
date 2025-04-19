@@ -134,6 +134,86 @@ function App() {
     setExperience(updatedExperience);
   }
 
+  // === Education logic ===
+  const [education, setEducation] = useState([
+    {
+      university: "",
+      degree: "",
+      graduation: "",
+      address: "",
+      bullets: [""]
+    }
+  ])
+
+  const handleEducationChange = (index, info, newValue, bulletIndex = null) => {
+    const updatedEducation = [...education];
+    const updatedEntry = { ...education[index] };
+  
+    if (info === "bullets" && bulletIndex !== null) {
+      const updatedBullets = [...updatedEntry.bullets];
+      updatedBullets[bulletIndex] = newValue;
+      updatedEntry.bullets = updatedBullets;
+    } else {
+      updatedEntry[info] = newValue;
+    }
+  
+    updatedEducation[index] = updatedEntry;
+    setEducation(updatedEducation);
+  };
+
+  const handleAddEducation = () => {
+    const newEducation = {
+      university: "",
+      degree: "",
+      graduation: "",
+      address: "",
+      bullets: [""]
+    };
+  
+    setEducation(prev => [...prev, newEducation]);
+  };
+
+  const handleRemoveEducation = (index) => {
+    const updatedEducation = [...education];
+    updatedEducation.splice(index, 1);
+  
+    // Always keep at least one form visible
+    if (updatedEducation.length === 0) {
+      updatedEducation.push({
+        university: "",
+        degree: "",
+        graduation: "",
+        address: "",
+        bullets: [""]
+      });
+    }
+  
+    setEducation(updatedEducation);
+  };
+
+  const handleAddEducationBullet = (index) => {
+    const updatedEducation = [...education];
+    const updatedEntry = { ...education[index] };
+    updatedEntry.bullets.push("");
+  
+    updatedEducation[index] = updatedEntry;
+    setEducation(updatedEducation);
+  };
+
+  const handleRemoveEducationBullet = (index, bulletIndex) => {
+    const updatedEducation = [...education];
+    const updatedEntry = { ...education[index] };
+    const updatedBullets = [...updatedEntry.bullets];
+  
+    updatedBullets.splice(bulletIndex, 1);
+  
+    // Always keep at least one bullet point
+    if (updatedBullets.length === 0) updatedBullets.push("");
+  
+    updatedEntry.bullets = updatedBullets;
+    updatedEducation[index] = updatedEntry;
+    setEducation(updatedEducation);
+  };
 
 
   return (
@@ -144,30 +224,44 @@ function App() {
       <div className='main-content'>
         {activeView === "personal" && <Personal personalDetails={personalDetails} onChange={setPersonalDetails}/>}
         {activeView === "links" && <Links links={links} onChange={setLinks}/>}
-        {activeView === "skills" && <Skills
-                                      skills={skills}
-                                      onChange={handleSkillChange}
-                                      addSkill={addSkill}
-                                      removeSkill={removeSkill}
-                                    />
-        }
-        {activeView === "work" && <WorkExperience
-                                    experience={experience}
-                                    experienceChange={handleExperienceChange}
-                                    addExperience={handleAddExperience}
-                                    removeExperience = {handleRemoveExperience}
-                                    addBullet = {handleAddBullet}
-                                    removeBullet = {handleRemoveBullet}
-                                  />
-        }
-        {activeView === "education" && <Education />}
+        {activeView === "skills" && (
+        <Skills
+          skills={skills}
+          onChange={handleSkillChange}
+          addSkill={addSkill}
+          removeSkill={removeSkill}
+        />
+        )}
+        {activeView === "work" && (
+          <WorkExperience
+            experience={experience}
+            experienceChange={handleExperienceChange}
+            addExperience={handleAddExperience}
+            removeExperience = {handleRemoveExperience}
+            addBullet = {handleAddBullet}
+            removeBullet = {handleRemoveBullet}
+          />
+        )}
+        {activeView === "education" && (
+          <Education
+            education={education}
+            educationChange={handleEducationChange}
+            addEducation={handleAddEducation}
+            removeEducation={handleRemoveEducation}
+            addBullet={handleAddEducationBullet}
+            removeBullet={handleRemoveEducationBullet}
+          />
+        )}
         {activeView === "certificates" && <Certificates />}
-        {activeView === "preview" && <Preview
-                                      personalDetails={personalDetails}
-                                      links={links}
-                                      skills={skills}
-                                      experience={experience}
-                                    />}
+        {activeView === "preview" && (
+          <Preview
+            personalDetails={personalDetails}
+            links={links}
+            skills={skills}
+            experience={experience}
+            education={education}
+          />
+        )}
       </div>
     </div>
   )

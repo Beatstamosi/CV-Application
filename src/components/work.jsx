@@ -14,7 +14,6 @@ export default function WorkExperience({ experience, experienceChange, addExperi
                     removeBullet={removeBullet}
                 />
             ))} 
-            {/* TODO: Make button add another Job */}
             <button
                 className="add-work-experience"
                 onClick={() => addExperience()}
