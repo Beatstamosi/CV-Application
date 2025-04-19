@@ -32,7 +32,7 @@ function App() {
 
   // === Skills logic ===
   const [skills, setSkills] = useState({
-    languages: ["Peter"],
+    languages: [""],
     tools: [""],
     other: [""]
   });
