@@ -19,6 +19,12 @@ function App() {
     address: "",
     about: ""
   });
+  
+  const [links, setLinks] = useState({
+    website: "",
+    linkedin: "",
+    github: "",
+  })
 
   return (
     <div className='app-layout'>
@@ -27,12 +33,12 @@ function App() {
       </div>
       <div className='main-content'>
         {activeView === "personal" && <Personal personalDetails={personalDetails} onChange={setPersonalDetails}/>}
-        {activeView === "links" && <Links />}
+        {activeView === "links" && <Links links={links} onChange={setLinks}/>}
         {activeView === "skills" && <Skills />}
         {activeView === "work" && <WorkExperience />}
         {activeView === "education" && <Education />}
         {activeView === "certificates" && <Certificates />}
-        {activeView === "preview" && <Preview personalDetails={personalDetails} />}
+        {activeView === "preview" && <Preview personalDetails={personalDetails} links={links} />}
       </div>
     </div>
   )

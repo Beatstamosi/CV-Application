@@ -21,7 +21,7 @@ h2 {
 
 .container-headers {
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 2fr;
     color: var(--color-accent-1);
 }
 
@@ -33,7 +33,7 @@ hr {
 
 .row {
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 2fr;
     align-items: center;
 }
 
