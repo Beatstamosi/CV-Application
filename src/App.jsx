@@ -1,14 +1,14 @@
-import { useState, useRef } from 'react'
+import { useState, useRef } from "react";
 import html2pdf from "html2pdf.js";
-import Sidebar from './components/sidebar'
-import Personal from './components/personal'
-import Links from './components/links'
-import Skills from './components/skills'
-import WorkExperience from './components/work'
-import Education from './components/education'
-import Certificates from './components/certificates'
-import Preview from './components/preview'
-import "./styles/App.css"
+import Sidebar from "./components/sidebar";
+import Personal from "./components/personal";
+import Links from "./components/links";
+import Skills from "./components/skills";
+import WorkExperience from "./components/work";
+import Education from "./components/education";
+import Certificates from "./components/certificates";
+import Preview from "./components/preview";
+import "./styles/App.css";
 
 function App() {
   // === Active View logic ===
@@ -21,7 +21,7 @@ function App() {
     email: "",
     phone: "",
     address: "",
-    about: ""
+    about: "",
   });
 
   // === Links logic ===
@@ -35,7 +35,7 @@ function App() {
   const [skills, setSkills] = useState({
     languages: [""],
     tools: [""],
-    other: [""]
+    other: [""],
   });
 
   const handleSkillChange = (skill, index, newValue) => {
@@ -48,7 +48,7 @@ function App() {
     const updated = [...skills[skill]];
     updated.push("");
     setSkills({ ...skills, [skill]: updated });
-  }
+  };
 
   const removeSkill = (skill, index) => {
     const updated = [...skills[skill]];
@@ -57,7 +57,7 @@ function App() {
       updated.push("");
     }
     setSkills({ ...skills, [skill]: updated });
-  }
+  };
 
   // === Work Experience logic ===
   const [experience, setExperience] = useState([
@@ -66,13 +66,18 @@ function App() {
       title: "",
       duration: "",
       address: "",
-      bullets: [""]
-    }
-  ])
+      bullets: [""],
+    },
+  ]);
 
-  const handleExperienceChange = (index, info, newValue, bulletIndex = null ) => {
+  const handleExperienceChange = (
+    index,
+    info,
+    newValue,
+    bulletIndex = null,
+  ) => {
     const updatedExperience = [...experience];
-    const updatedJob = {...experience[index]};
+    const updatedJob = { ...experience[index] };
 
     if (info === "bullets" && bulletIndex !== null) {
       const updatedBullets = [...updatedJob.bullets];
@@ -84,7 +89,7 @@ function App() {
 
     updatedExperience[index] = updatedJob;
     setExperience(updatedExperience);
-  }
+  };
 
   const handleAddExperience = () => {
     const newExperience = {
@@ -92,10 +97,10 @@ function App() {
       title: "",
       duration: "",
       address: "",
-      bullets: [""]
-    }
+      bullets: [""],
+    };
 
-    setExperience(prev => [...prev, newExperience]);
+    setExperience((prev) => [...prev, newExperience]);
   };
 
   const handleRemoveExperience = (index) => {
@@ -108,8 +113,8 @@ function App() {
         title: "",
         duration: "",
         address: "",
-        bullets: [""]
-      }
+        bullets: [""],
+      };
       updatedExperience.push(newExperience);
     }
 
@@ -118,16 +123,16 @@ function App() {
 
   const handleAddBullet = (index) => {
     const updatedExperience = [...experience];
-    const updatedJob = {...experience[index]};
+    const updatedJob = { ...experience[index] };
     updatedJob.bullets.push("");
 
     updatedExperience[index] = updatedJob;
     setExperience(updatedExperience);
-  }
+  };
 
   const handleRemoveBullet = (index, bulletIndex) => {
     const updatedExperience = [...experience];
-    const updatedJob = {...experience[index]};
+    const updatedJob = { ...experience[index] };
     const updatedBullets = [...updatedJob.bullets];
     updatedBullets.splice(bulletIndex, 1);
     // make sure always one form is shown
@@ -136,7 +141,7 @@ function App() {
     updatedJob.bullets = updatedBullets;
     updatedExperience[index] = updatedJob;
     setExperience(updatedExperience);
-  }
+  };
 
   // === Education logic ===
   const [education, setEducation] = useState([
@@ -145,14 +150,14 @@ function App() {
       degree: "",
       graduation: "",
       address: "",
-      bullets: [""]
-    }
-  ])
+      bullets: [""],
+    },
+  ]);
 
   const handleEducationChange = (index, info, newValue, bulletIndex = null) => {
     const updatedEducation = [...education];
     const updatedEntry = { ...education[index] };
-  
+
     if (info === "bullets" && bulletIndex !== null) {
       const updatedBullets = [...updatedEntry.bullets];
       updatedBullets[bulletIndex] = newValue;
@@ -160,7 +165,7 @@ function App() {
     } else {
       updatedEntry[info] = newValue;
     }
-  
+
     updatedEducation[index] = updatedEntry;
     setEducation(updatedEducation);
   };
@@ -171,16 +176,16 @@ function App() {
       degree: "",
       graduation: "",
       address: "",
-      bullets: [""]
+      bullets: [""],
     };
-  
-    setEducation(prev => [...prev, newEducation]);
+
+    setEducation((prev) => [...prev, newEducation]);
   };
 
   const handleRemoveEducation = (index) => {
     const updatedEducation = [...education];
     updatedEducation.splice(index, 1);
-  
+
     // Always keep at least one form visible
     if (updatedEducation.length === 0) {
       updatedEducation.push({
@@ -188,10 +193,10 @@ function App() {
         degree: "",
         graduation: "",
         address: "",
-        bullets: [""]
+        bullets: [""],
       });
     }
-  
+
     setEducation(updatedEducation);
   };
 
@@ -199,7 +204,7 @@ function App() {
     const updatedEducation = [...education];
     const updatedEntry = { ...education[index] };
     updatedEntry.bullets.push("");
-  
+
     updatedEducation[index] = updatedEntry;
     setEducation(updatedEducation);
   };
@@ -208,12 +213,12 @@ function App() {
     const updatedEducation = [...education];
     const updatedEntry = { ...education[index] };
     const updatedBullets = [...updatedEntry.bullets];
-  
+
     updatedBullets.splice(bulletIndex, 1);
-  
+
     // Always keep at least one bullet point
     if (updatedBullets.length === 0) updatedBullets.push("");
-  
+
     updatedEntry.bullets = updatedBullets;
     updatedEducation[index] = updatedEntry;
     setEducation(updatedEducation);
@@ -223,7 +228,7 @@ function App() {
   const [certificates, setCertificates] = useState("");
   const [interests, setInterests] = useState("");
 
- // === Handle pdf logic ===
+  // === Handle pdf logic ===
   const previewRef = useRef();
 
   const handleDownloadPDF = () => {
@@ -240,7 +245,7 @@ function App() {
     html2pdf().from(element).set(options).save();
   };
 
-   // === Handle clear CV logic ===
+  // === Handle clear CV logic ===
   const clearCV = () => {
     let text = "Are you sure you want to reset your CV?";
     if (confirm(text) === true) {
@@ -250,7 +255,7 @@ function App() {
         email: "",
         phone: "",
         address: "",
-        about: ""
+        about: "",
       });
       setLinks({
         website: "",
@@ -260,7 +265,7 @@ function App() {
       setSkills({
         languages: [""],
         tools: [""],
-        other: [""]
+        other: [""],
       });
       setExperience([
         {
@@ -268,8 +273,8 @@ function App() {
           title: "",
           duration: "",
           address: "",
-          bullets: [""]
-        }
+          bullets: [""],
+        },
       ]);
       setEducation([
         {
@@ -277,39 +282,49 @@ function App() {
           degree: "",
           graduation: "",
           address: "",
-          bullets: [""]
-        }
+          bullets: [""],
+        },
       ]);
       setCertificates("");
       setInterests("");
       setActiveView("personal");
     }
-  }
+  };
 
   return (
-    <div className='app-layout'>
-      <div className='container-sidebar'>
-        <Sidebar onclick={setActiveView} activeView={activeView} downloadPdf={handleDownloadPDF} clearCV={clearCV} />
-      </div>
-      <div className='main-content'>
-        {activeView === "personal" && <Personal personalDetails={personalDetails} onChange={setPersonalDetails}/>}
-        {activeView === "links" && <Links links={links} onChange={setLinks}/>}
-        {activeView === "skills" && (
-        <Skills
-          skills={skills}
-          onChange={handleSkillChange}
-          addSkill={addSkill}
-          removeSkill={removeSkill}
+    <div className="app-layout">
+      <div className="container-sidebar">
+        <Sidebar
+          onclick={setActiveView}
+          activeView={activeView}
+          downloadPdf={handleDownloadPDF}
+          clearCV={clearCV}
         />
+      </div>
+      <div className="main-content">
+        {activeView === "personal" && (
+          <Personal
+            personalDetails={personalDetails}
+            onChange={setPersonalDetails}
+          />
+        )}
+        {activeView === "links" && <Links links={links} onChange={setLinks} />}
+        {activeView === "skills" && (
+          <Skills
+            skills={skills}
+            onChange={handleSkillChange}
+            addSkill={addSkill}
+            removeSkill={removeSkill}
+          />
         )}
         {activeView === "work" && (
           <WorkExperience
             experience={experience}
             experienceChange={handleExperienceChange}
             addExperience={handleAddExperience}
-            removeExperience = {handleRemoveExperience}
-            addBullet = {handleAddBullet}
-            removeBullet = {handleRemoveBullet}
+            removeExperience={handleRemoveExperience}
+            addBullet={handleAddBullet}
+            removeBullet={handleRemoveBullet}
           />
         )}
         {activeView === "education" && (
@@ -323,7 +338,7 @@ function App() {
           />
         )}
         {activeView === "certificates" && (
-          <Certificates 
+          <Certificates
             certificates={certificates}
             setCertificates={setCertificates}
             interests={interests}
@@ -345,7 +360,7 @@ function App() {
         )}
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
