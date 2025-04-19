@@ -1,12 +1,17 @@
-# React + Vite
+# 📄 CV Builder App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A sleek, interactive CV builder built with **React**. Fill in your details, view a live preview, and download a polished, printable PDF version of your resume. Inspired by [The Odin Project's CV Application project](https://www.theodinproject.com/lessons/node-path-react-new-cv-application).
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Sidebar navigation** to switch between sections
+- **Live preview** of your CV as you fill it out
+- **PDF export** powered by `html2pdf.js`
+- Add and remove:
+  - Skills (languages, tools, other)
+  - Work experiences and bullet points
+  - Education entries and bullet points
+- Supports personal links, certificates, and interests
+- One-click **reset** to start over
